@@ -1,8 +1,8 @@
 package edu.odu.cs.cs471.files;
 
 /**
- * Object File class
- * @author Chris
+ * File class object file
+ * @author Christopher Diasanta
  *
  */
 public class File {
