@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import edu.odu.cs.cs471.VirtualFileSystem.*;
+
 public class main {
 
 	private JFrame frame;
@@ -38,6 +40,8 @@ public class main {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		VirtualSystem system = new VirtualSystem();
 	}
 
 }
