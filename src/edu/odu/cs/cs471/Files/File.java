@@ -1,4 +1,4 @@
-package edu.odu.cs.cs471.files;
+package edu.odu.cs.cs471.Files;
 
 /**
  * File class object file
@@ -12,6 +12,9 @@ public class File {
 	private String fileExtension;
 	private String Uniqlo;
 	
+	/**
+	 * Default Constructor
+	 */
 	public File() {
 		i_node = -1;
 		fileName = "";
@@ -19,6 +22,10 @@ public class File {
 		Uniqlo = "";
 	}
 	
+	/**
+	 * Copy Constructor 
+	 * @param copy
+	 */
 	public File (File copy) {
 		this.i_node = copy.i_node;
 		this.fileName = copy.fileName;
