@@ -4,9 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import edu.odu.cs.cs471.VirtualFileSystem.*;
-
-public class main {
+public class Main {
 
 	private JFrame frame;
 
@@ -17,7 +15,7 @@ public class main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					main window = new main();
+					Main window = new Main();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +27,7 @@ public class main {
 	/**
 	 * Create the application.
 	 */
-	public main() {
+	public Main() {
 		initialize();
 	}
 
@@ -40,8 +38,6 @@ public class main {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		VirtualSystem system = new VirtualSystem();
 	}
 
 }
