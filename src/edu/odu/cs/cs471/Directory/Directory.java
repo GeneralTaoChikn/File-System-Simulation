@@ -33,6 +33,7 @@ public class Directory {
 	 * @param parent
 	 */
 	public Directory(String name, Directory parent) {
+		
 		setDirName(name);
 		setFiles(null);
 		depth = parent.depth + 1;

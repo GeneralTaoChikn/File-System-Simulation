@@ -1,4 +1,6 @@
 package edu.odu.cs.cs471.VirtualFileSystem;
+
+import javax.swing.JTree;
 /**
  * Child class of Virtual System
  * populate File System
@@ -11,6 +13,9 @@ public class PopulateVFS extends VirtualSystem {
 		VirtualSystem System = new VirtualSystem();
 		
 		//TODO Prepopulate a Virtual System
+//		System.A.getRoot()
+//		System.B.getRoot()
+//		System.C.getRoot()
 		
 		
 		
@@ -18,6 +23,17 @@ public class PopulateVFS extends VirtualSystem {
 		return System;
 	}
 	
+	
+	
 	//TODO Find way to use a tree TOO.
+	public static JTree PrePopTree() {
+		JTree tree = new JTree();
+		
+		
+		
+		
+		
+		return tree;
+	}
 
 }

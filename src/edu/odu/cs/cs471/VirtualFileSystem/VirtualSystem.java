@@ -3,9 +3,9 @@ import edu.odu.cs.cs471.Drive.*;
 
 public class VirtualSystem {
 	
-	private Drive A;
-	private Drive B;
-	private Drive C;
+	protected Drive A;
+	protected Drive B;
+	protected Drive C;
 	
 	/**
 	 * Default Constructor
