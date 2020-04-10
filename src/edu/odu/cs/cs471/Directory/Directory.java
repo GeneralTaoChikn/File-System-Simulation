@@ -11,6 +11,7 @@ import edu.odu.cs.cs471.Files.*;
  */
 public class Directory {
 	
+	private Directory Previous;
 	private String dirName;
 	private List<File> files;
 	private int depth;
@@ -20,6 +21,7 @@ public class Directory {
 	 * Default Constructor
 	 */
 	public Directory() {
+		setPrevious(null);
 		setDirName("root");
 		setFiles(null);
 		depth = 0;
@@ -33,7 +35,8 @@ public class Directory {
 	 * @param parent
 	 */
 	public Directory(String name, Directory parent) {
-		
+		setPrevious(null);
+		setPrevious(parent);
 		setDirName(name);
 		setFiles(null);
 		depth = parent.depth + 1;
@@ -72,6 +75,14 @@ public class Directory {
 
 	public void setLink(Directory link) {
 		Link = link;
+	}
+
+	public Directory getPrevious() {
+		return Previous;
+	}
+
+	public void setPrevious(Directory previous) {
+		Previous = previous;
 	}
 	
 }
