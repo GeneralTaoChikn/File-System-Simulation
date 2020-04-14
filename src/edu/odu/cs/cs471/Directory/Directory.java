@@ -34,9 +34,9 @@ public class Directory {
 	 * @param name
 	 * @param parent
 	 */
-	public Directory(String name, Directory parent) {
+	public Directory(String name) {
 		setPrevious(null);
-		setPrevious(parent);
+		setPrevious(this);
 		setDirName(name);
 		setFiles(null);
 		depth = parent.depth + 1;

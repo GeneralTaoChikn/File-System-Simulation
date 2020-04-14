@@ -46,5 +46,22 @@ public class Drive {
 		this.root = root;
 	}
 	
+	public Directory getDirectory(int i) {
+		
+		switch(i) {
+		case 1:
+			return this.root.getLink();
+		case 2:
+			return this.root.getLink().getLink();
+		case 3:
+			return this.root.getLink().getLink().getLink();
+		case 4:
+			return this.root.getLink().getLink().getLink().getLink();
+		case 5:
+			return this.root.getLink().getLink().getLink().getLink().getLink();
+		}
+		return this.root.getLink().getLink().getLink().getLink().getLink();
+	}
+	
 	
 }
