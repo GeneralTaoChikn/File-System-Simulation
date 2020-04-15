@@ -1,5 +1,6 @@
 package edu.odu.cs.cs471.Directory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.odu.cs.cs471.Files.*;
@@ -26,7 +27,7 @@ public class Directory {
 		setFiles(null);
 		depth = 0;
 		
-		setLink(new Directory("", this));
+		setLink(new Directory(""));
 	}
 	
 	/**
@@ -38,11 +39,11 @@ public class Directory {
 		setPrevious(null);
 		setPrevious(this);
 		setDirName(name);
-		setFiles(null);
-		depth = parent.depth + 1;
+		setFiles(new ArrayList<File> ());
+		depth = this.depth + 1;
 		
 		//Restrict depth to 4
-		if (parent.depth > 5)
+		if (this.depth > 5)
 			setLink(new Directory());
 		else
 			setLink(null);

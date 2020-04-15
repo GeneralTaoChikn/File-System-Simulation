@@ -60,7 +60,7 @@ public class Drive {
 		case 5:
 			return this.root.getLink().getLink().getLink().getLink().getLink();
 		}
-		return this.root.getLink().getLink().getLink().getLink().getLink();
+		return null;
 	}
 	
 	

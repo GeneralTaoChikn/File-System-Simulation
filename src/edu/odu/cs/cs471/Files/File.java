@@ -33,4 +33,12 @@ public class File {
 		this.Uniqlo = copy.Uniqlo;
 	}
 
+	/**
+	 * override
+	 */
+	public String toString() {
+		return fileName + fileExtension +
+				'\n' + Uniqlo;
+		
+	}
 }

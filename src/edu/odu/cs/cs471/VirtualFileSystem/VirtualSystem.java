@@ -4,6 +4,7 @@ import edu.odu.cs.cs471.Drive.*;
 
 public class VirtualSystem {
 	
+	protected String System;
 	protected Drive A;
 	protected Drive B;
 	protected Drive C;
@@ -12,6 +13,7 @@ public class VirtualSystem {
 	 * Default Constructor
 	 */
 	public VirtualSystem() {
+		System = "CHRIS-desktop";
 		setA(new Drive("A"));
 		setB(new Drive("B"));
 		setC(new Drive("C"));
@@ -41,6 +43,9 @@ public class VirtualSystem {
 	public void setC(Drive c) {
 		C = c;
 	}
-
+	
+	public String getSystem() {
+		return this.System;
+	}
 
 }
