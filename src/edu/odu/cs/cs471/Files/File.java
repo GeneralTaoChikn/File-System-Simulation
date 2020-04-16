@@ -22,6 +22,13 @@ public class File {
 		Uniqlo = "";
 	}
 	
+	public File (int node, String name, String extension, String content) {
+		i_node = node;
+		fileName = name;
+		fileExtension = extension;
+		Uniqlo = content;
+	}
+	
 	/**
 	 * Copy Constructor 
 	 * @param copy

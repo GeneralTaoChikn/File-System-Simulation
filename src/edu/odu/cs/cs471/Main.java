@@ -2,23 +2,31 @@ package edu.odu.cs.cs471;
 
 import java.awt.EventQueue;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JTree;
 
+import edu.odu.cs.cs471.Directory.Directory;
+import edu.odu.cs.cs471.Files.File;
 import edu.odu.cs.cs471.VirtualFileSystem.PopulateVFS;
 import edu.odu.cs.cs471.VirtualFileSystem.VirtualSystem;
+import javafx.util.Pair;
 
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import javax.swing.JList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
 
-//import edu.odu.cs.cs471.VirtualFileSystem.*;	
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+
+
+import javax.swing.event.TreeSelectionEvent;
 
 public class Main {
 
 	private JFrame frame;
-	//VirtualSystem system = new VirtualSystem();
 
 	/**
 	 * Launch the application.
@@ -54,14 +62,23 @@ public class Main {
 		
 		VirtualSystem System;
 		System = PopulateVFS.populate();
+		DefaultListModel <File> files = new DefaultListModel<File> (); 
 		
 		JTree tree = new JTree(PopulateVFS.PopTree(System));
-		tree.setBounds(12, 13, 410, 419);
+		tree.addTreeSelectionListener(new TreeSelectionListener() {
+			public void valueChanged(TreeSelectionEvent e) {
+				Pair <String, Directory> selected = (Pair <String, Directory>)e.getPath().getLastPathComponent();
+				
+				files = (DefaultListModel<File>) selected.getValue().getFiles();
+
+			}
+		});
+		tree.setBounds(12, 13, 251, 419);
 		frame.getContentPane().add(tree);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(516, 24, 351, 351);
-		frame.getContentPane().add(textArea);
-		
+		JList FileListViewer = new JList(files);
+		FileListViewer.setBounds(291, 32, 306, 400);
+		frame.getContentPane().add(FileListViewer);
+				
 	}
 }

@@ -12,10 +12,10 @@ import edu.odu.cs.cs471.Files.*;
  */
 public class Directory {
 	
-	private Directory Previous;
 	private String dirName;
 	private List<File> files;
 	private int depth;
+	private Directory Previous;
 	private Directory Link;
 	
 	/**
@@ -84,6 +84,14 @@ public class Directory {
 
 	public void setPrevious(Directory previous) {
 		Previous = previous;
+	}
+	
+	/**
+	 * Add file to Directory
+	 * @param file
+	 */
+	public void addFile(File file) {
+		this.files.add(file);
 	}
 	
 }

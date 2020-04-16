@@ -1,6 +1,9 @@
 package edu.odu.cs.cs471.Drive;
 
+import java.util.List;
+
 import edu.odu.cs.cs471.Directory.*;
+import edu.odu.cs.cs471.Files.*;
 
 /**
  * Drive object class file
@@ -46,6 +49,11 @@ public class Drive {
 		this.root = root;
 	}
 	
+	/**
+	 * Retrieve Nested Direcotry
+	 * @param i
+	 * @return nested directory
+	 */
 	public Directory getDirectory(int i) {
 		
 		switch(i) {
@@ -59,9 +67,18 @@ public class Drive {
 			return this.root.getLink().getLink().getLink().getLink();
 		case 5:
 			return this.root.getLink().getLink().getLink().getLink().getLink();
+		default:
+			return null;
 		}
-		return null;
 	}
 	
+	public List<File> search() {
+		Directory pointer = null;
+		pointer = this.root;
+		
+		for(File file: this.root.getFiles()) {
+		}
+		return pointer.getFiles();
+	}
 	
 }
