@@ -8,6 +8,8 @@ public class VirtualSystem {
 	protected Drive A;
 	protected Drive B;
 	protected Drive C;
+	protected String WorkingDirectory;
+	protected String WorkingDrive;
 	
 	/**
 	 * Default Constructor
@@ -17,6 +19,9 @@ public class VirtualSystem {
 		setA(new Drive("A"));
 		setB(new Drive("B"));
 		setC(new Drive("C"));
+		setWorkingDirectory("C");
+		setWorkingDrive("A1");
+		
 	}
 
 //======================================================================
@@ -46,6 +51,35 @@ public class VirtualSystem {
 	
 	public String getSystem() {
 		return this.System;
+	}
+	
+	public void setWorkingDirectory(String work) {
+		WorkingDirectory = work;
+	}
+	
+	public void setWorkingDrive(String drive) {
+		WorkingDrive = drive;
+	}
+	
+	public String getWorkingDirectory () {
+		return WorkingDirectory;
+	}
+	
+	public String getWorkingDrive () {
+		return WorkingDrive;
+	}
+	public Drive get(String N) {
+		switch(N) {
+		case "A":
+			return getA();
+		case "B":
+			return getB();
+		case "C":
+			return getC();
+		default:
+			return null;
+			
+		}
 	}
 
 }

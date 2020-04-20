@@ -24,7 +24,7 @@ public class Directory {
 	public Directory() {
 		setPrevious(null);
 		setDirName("root");
-		setFiles(null);
+		setFiles(new ArrayList<File> ());
 		depth = 0;
 		
 		setLink(new Directory(""));
@@ -86,12 +86,25 @@ public class Directory {
 		Previous = previous;
 	}
 	
+	public int getDepth() {
+		return depth;
+	}
+	
 	/**
 	 * Add file to Directory
 	 * @param file
 	 */
 	public void addFile(File file) {
 		this.files.add(file);
+	}
+	
+	public void deleteFile(String toDelete) {
+		File ptr = null;
+		for (File file: files) {
+			if ((file.getFileName()+file.getFileExtension()) == toDelete)
+					ptr = file;
+		}
+		files.remove(ptr);
 	}
 	
 }

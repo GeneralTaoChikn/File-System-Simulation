@@ -50,13 +50,15 @@ public class Drive {
 	}
 	
 	/**
-	 * Retrieve Nested Direcotry
+	 * Retrieve Nested Directory
 	 * @param i
 	 * @return nested directory
 	 */
 	public Directory getDirectory(int i) {
 		
 		switch(i) {
+		case 0:
+			return this.root;
 		case 1:
 			return this.root.getLink();
 		case 2:
@@ -72,13 +74,44 @@ public class Drive {
 		}
 	}
 	
-	public List<File> search() {
+	public List<File> getFileList(String Name) {
 		Directory pointer = null;
 		pointer = this.root;
+		do {
+			if (pointer.getDirName() == Name) {
+				return pointer.getFiles();
+			}
+			pointer = pointer.getLink();
+			
+		}while(pointer != null);
 		
-		for(File file: this.root.getFiles()) {
-		}
-		return pointer.getFiles();
+		return null;
+		
+//		for(File file: this.root.getFiles()) {
+//			
+//		}
+//		
+//		return pointer.getFiles();
+	}
+	
+	public Directory getdir(String Name) {
+		Directory pointer = null;
+		pointer = this.root;
+		do {
+			if (pointer.getDirName() == Name) {
+				return pointer;
+			}
+			pointer = pointer.getLink();
+			
+		}while(pointer != null);
+		
+		return null;
+		
+//		for(File file: this.root.getFiles()) {
+//			
+//		}
+//		
+//		return pointer.getFiles();
 	}
 	
 }

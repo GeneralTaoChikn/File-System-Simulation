@@ -40,6 +40,14 @@ public class File {
 		this.Uniqlo = copy.Uniqlo;
 	}
 
+	public String getFileName() {
+		return fileName;
+	}
+	
+	public String getFileExtension() {
+		return fileExtension;
+	}
+	
 	/**
 	 * override
 	 */
