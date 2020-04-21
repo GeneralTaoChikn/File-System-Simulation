@@ -1,5 +1,6 @@
 package edu.odu.cs.cs471.Drive;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.odu.cs.cs471.Directory.*;
@@ -19,7 +20,7 @@ public class Drive {
 	 */
 	public Drive() {
 		setDriveName("");
-		DirectoryList.add(new Directory("root"));
+		DirectoryList = new ArrayList<Directory>();
 	}
 	
 	/**
@@ -28,6 +29,7 @@ public class Drive {
 	 */
 	public Drive(String name) {
 		setDriveName(name);
+		DirectoryList = new ArrayList<Directory>();
 		DirectoryList.add(new Directory("root"));
 	}
 
@@ -46,6 +48,15 @@ public class Drive {
 	
 	public void addDirectory(Directory toAdd) {
 		DirectoryList.add(toAdd);
+	}
+	
+	public List<File> findDirecFileList (String DirecName) {
+		for(Directory ptr : DirectoryList) {
+			if (ptr.getDirName() ==  DirecName) {
+				return ptr.getFiles();
+			}
+		}
+		return null;
 	}
 	
 	

@@ -14,20 +14,14 @@ public class Directory {
 	
 	private String dirName;
 	private List<File> files;
-	private int depth;
-	private Directory Previous;
-	private Directory Link;
+
 	
 	/**
 	 * Default Constructor
 	 */
 	public Directory() {
-		setPrevious(null);
 		setDirName("root");
 		setFiles(new ArrayList<File> ());
-		depth = 0;
-		
-		setLink(new Directory(""));
 	}
 	
 	/**
@@ -36,17 +30,9 @@ public class Directory {
 	 * @param parent
 	 */
 	public Directory(String name) {
-		setPrevious(null);
-		setPrevious(this);
 		setDirName(name);
 		setFiles(new ArrayList<File> ());
-		depth = this.depth + 1;
-		
-		//Restrict depth to 4
-		if (this.depth > 5)
-			setLink(new Directory());
-		else
-			setLink(null);
+
 	}
 
 //======================================================================
@@ -70,26 +56,6 @@ public class Directory {
 		this.files = files;
 	}
 
-	public Directory getLink() {
-		return Link;
-	}
-
-	public void setLink(Directory link) {
-		Link = link;
-	}
-
-	public Directory getPrevious() {
-		return Previous;
-	}
-
-	public void setPrevious(Directory previous) {
-		Previous = previous;
-	}
-	
-	public int getDepth() {
-		return depth;
-	}
-	
 	/**
 	 * Add file to Directory
 	 * @param file

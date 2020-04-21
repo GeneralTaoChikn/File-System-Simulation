@@ -94,7 +94,8 @@ public class Main {
 				String DirList = e.getPath().getLastPathComponent().toString();
 				//return drive
 				String n = (e.getPath().getParentPath().getLastPathComponent().toString());
-				List<File> toCopy = System.get(n).getFileList(DirList);
+				
+				List<File> toCopy = System.get(n).findDirecFileList(DirList);
 				for (File file: toCopy) {
 					files.addElement(file);
 				}//end File
@@ -131,7 +132,7 @@ public class Main {
 				EnterFileName.setText("");
 				FileContents.setText("");
 				
-				System.get(System.getWorkingDrive()).getFileList(System.getWorkingDirectory()).add(file);
+				System.get(System.getWorkingDrive()).findDirecFileList(System.getWorkingDirectory()).add(file);
 				
 				// Add Node
 				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
@@ -161,7 +162,9 @@ public class Main {
 				String FileToDelete = selectedNode.toString();
 				FileContents.setText(selectedNode.toString());
 				
-				System.get(selectedNode.getParent().getParent().toString()).getdir(selectedNode.getParent().toString()).deleteFile(FileToDelete);
+				((Directory) System.get(selectedNode.getParent().getParent().toString())
+					.findDirecFileList(selectedNode.getParent().toString()))
+					.deleteFile(FileToDelete);
 				
 			}
 		});
@@ -180,7 +183,7 @@ public class Main {
 				String drive = selectedNode.getParent().getParent().toString();
 				String directory = selectedNode.getParent().toString();
 				
-				List <File> files = System.get(drive).getFileList(directory);
+				List <File> files = System.get(drive).findDirecFileList(directory);
 				for (File ptr: files) {
 					if ((ptr.getFileName()+ ptr.getFileExtension()) == FileToPrint)
 						FileContents.setText(ptr.toString());
