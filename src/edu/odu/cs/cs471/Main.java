@@ -28,6 +28,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Main {
 
@@ -150,8 +152,8 @@ public class Main {
 		frame.getContentPane().add(EnterFileName);
 		EnterFileName.setColumns(10);
 		
-//		JComboBox <String>fileExtension = new JComboBox<String>(fileExtensions);
-		JComboBox fileExtension = new JComboBox(fileExtensions);
+		JComboBox <String>fileExtension = new JComboBox<String>(fileExtensions);
+//		JComboBox fileExtension = new JComboBox(fileExtensions);
 		fileExtension.setBounds(772, 395, 57, 22);
 		frame.getContentPane().add(fileExtension);
 		
@@ -160,6 +162,7 @@ public class Main {
 		 * SAVE
 		 */
 		JButton btnSave = new JButton("Save");
+		btnSave.setIcon(new ImageIcon(Main.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				File file = new File (EnterFileName.getText(), 
@@ -189,6 +192,7 @@ public class Main {
 		 * DELETE
 		 */
 		JButton btnDelete = new JButton("Delete");
+		btnDelete.setBackground(new Color(255, 0, 0));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
