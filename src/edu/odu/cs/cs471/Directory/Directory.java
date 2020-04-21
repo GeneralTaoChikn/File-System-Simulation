@@ -95,7 +95,7 @@ public class Directory {
 	 * @param file
 	 */
 	public void addFile(File file) {
-		this.files.add(file);
+		files.add(file);
 	}
 	
 	public void deleteFile(String toDelete) {

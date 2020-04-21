@@ -19,6 +19,7 @@ public class VirtualSystem {
 		setA(new Drive("A"));
 		setB(new Drive("B"));
 		setC(new Drive("C"));
+		
 		setWorkingDirectory("C");
 		setWorkingDrive("A1");
 		
@@ -68,6 +69,7 @@ public class VirtualSystem {
 	public String getWorkingDrive () {
 		return WorkingDrive;
 	}
+	
 	public Drive get(String N) {
 		switch(N) {
 		case "A":

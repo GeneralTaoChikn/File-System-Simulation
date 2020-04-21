@@ -13,14 +13,13 @@ import edu.odu.cs.cs471.Files.*;
 public class Drive {
 	
 	private String driveName;
-	private Directory root;
-	private List<Directory> directories;
+	private List<Directory> DirectoryList;
 	/**
 	 * Default Constructor
 	 */
 	public Drive() {
 		setDriveName("");
-		setRoot(new Directory());
+		DirectoryList.add(new Directory("root"));
 	}
 	
 	/**
@@ -29,7 +28,7 @@ public class Drive {
 	 */
 	public Drive(String name) {
 		setDriveName(name);
-		setRoot(new Directory());
+		DirectoryList.add(new Directory("root"));
 	}
 
 //======================================================================
@@ -41,64 +40,13 @@ public class Drive {
 		this.driveName = driveName;
 	}
 
-	public Directory getRoot() {
-		return root;
-	}
-
-	public void setRoot(Directory root) {
-		this.root = root;
+	public List<Directory>  getDirList(){
+		return DirectoryList;
 	}
 	
-	/**
-	 * Retrieve Nested Directory
-	 * @param i
-	 * @return nested directory
-	 */
-	public Directory getDirectory(int i) {
-		
-		switch(i) {
-		case 0:
-			return this.root;
-		case 1:
-			return this.root.getLink();
-		case 2:
-			return this.root.getLink().getLink();
-		case 3:
-			return this.root.getLink().getLink().getLink();
-		case 4:
-			return this.root.getLink().getLink().getLink().getLink();
-		case 5:
-			return this.root.getLink().getLink().getLink().getLink().getLink();
-		default:
-			return null;
-		}
+	public void addDirectory(Directory toAdd) {
+		DirectoryList.add(toAdd);
 	}
 	
-	public List<File> getFileList(String Name) {
-		Directory pointer = null;
-		pointer = this.root;
-		do {
-			if (pointer.getDirName() == Name) {
-				return pointer.getFiles();
-			}
-			pointer = pointer.getLink();
-			
-		}while(pointer != null);
-		
-		return null;
-	}
-
-	public Directory getdir(String Name) {
-		Directory pointer = null;
-		pointer = this.root;
-		
-		for (int i = 0; i < 6; i++) {
-			pointer = getDirectory(i);
-			if (pointer.getDirName() == Name) {
-				return pointer;
-			}
-		}		
-		return null;
-	}
 	
 }
