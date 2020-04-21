@@ -22,7 +22,6 @@ public class VirtualSystem {
 		
 		setWorkingDirectory("C");
 		setWorkingDrive("A1");
-		
 	}
 
 //======================================================================

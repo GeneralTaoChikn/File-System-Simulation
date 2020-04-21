@@ -30,6 +30,7 @@ import javax.swing.JLabel;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import javax.swing.border.BevelBorder;
 
 public class Main {
 
@@ -74,10 +75,15 @@ public class Main {
 		String [] fileExtensions = { ".exe" ,".txt" , ".docx", ".jar"};
 		
 		JTextPane FileContents = new JTextPane();
+		FileContents.setForeground(new Color(0, 0, 0));
+		FileContents.setBackground(new Color(255, 255, 255));
 		FileContents.setBounds(639, 41, 300, 304);
 		frame.getContentPane().add(FileContents);
 		
 		JTree tree = new JTree(PopulateVFS.PopTree(System));
+		tree.setForeground(new Color(0, 0, 0));
+		tree.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		tree.setBackground(new Color(255, 255, 255));
 		tree.addTreeExpansionListener(new TreeExpansionListener() {
 			public void treeCollapsed(TreeExpansionEvent e) {
 				files.clear();
@@ -132,7 +138,7 @@ public class Main {
 					String nme = file.getFileName() + file.getFileExtension();
 //					EnterFileName.setText(nme);
 					if (nme.contentEquals(fileName)) {
-						EnterFileName.setText(file.toString());
+//						EnterFileName.setText(file.toString());
 						FileContents.setText(file.toString());
 					}
 				}//end File
@@ -144,6 +150,9 @@ public class Main {
 		frame.getContentPane().add(tree);
 		
 		JList <File> FileListViewer = new JList <File>(files);
+		FileListViewer.setBackground(new Color(255, 255, 255));
+		FileListViewer.setForeground(new Color(0, 0, 0));
+		FileListViewer.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		FileListViewer.setBounds(325, 40, 271, 560);
 		frame.getContentPane().add(FileListViewer);
 		
@@ -242,8 +251,8 @@ public class Main {
 		JTextPane Directions = new JTextPane();
 		Directions.setEditable(false);
 		Directions.setText("Directions: \nFileContents pane is used to save a file."
-				+ "\nTo Save: Expand the directory you "
-				+ "wish to save. \nTo Delete: select the file from Directory"
+				+ "\nTo Save: Double click to expand the directory "
+				+ " to save into. \nTo Delete: select the file from Directory"
 				+ " and hit delete. \nTo PrintFile: Simply click the file you "
 				+ "wish to preview. \n \nNote: the middle pane is used for prev"
 				+ "iewing files and shows when expanding/collapsing directories");
