@@ -64,20 +64,18 @@ public class Directory {
 		files.add(file);
 	}
 	
-	public void deleteFile(String toDelete) {
-		File ptr = null;
-		for (File file: files) {
-			if ((file.getFileName()+file.getFileExtension()) == toDelete) {
-					ptr = file;
-			}		
+	public void deleteFile(String fileToDelete) {
+		for(int i = 0; i < files.size(); i++) {
+			String name = files.get(i).getFileName() + files.get(i).getFileExtension();
+			if (name.equals(fileToDelete))
+				files.remove(i);
 		}
-		files.remove(ptr);
 	}
 	
 	public String print(String toPrint) {
 		File ptr = null;
 		for (File file: files) {
-			if ((file.getFileName()+file.getFileExtension()) == toPrint) {
+			if ((file.getFileName()+file.getFileExtension()).contentEquals(toPrint)) {
 				ptr = file;
 				return ptr.toString();
 			}
