@@ -101,10 +101,23 @@ public class Directory {
 	public void deleteFile(String toDelete) {
 		File ptr = null;
 		for (File file: files) {
-			if ((file.getFileName()+file.getFileExtension()) == toDelete)
+			if ((file.getFileName()+file.getFileExtension()) == toDelete) {
 					ptr = file;
+			}		
 		}
 		files.remove(ptr);
+	}
+	
+	public String print(String toPrint) {
+		File ptr = null;
+		for (File file: files) {
+			if ((file.getFileName()+file.getFileExtension()) == toPrint) {
+				ptr = file;
+				return ptr.toString();
+			}
+		}
+		return null;
+		
 	}
 	
 }

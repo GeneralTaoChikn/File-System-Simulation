@@ -14,7 +14,7 @@ public class Drive {
 	
 	private String driveName;
 	private Directory root;
-	
+	private List<Directory> directories;
 	/**
 	 * Default Constructor
 	 */
@@ -86,32 +86,19 @@ public class Drive {
 		}while(pointer != null);
 		
 		return null;
-		
-//		for(File file: this.root.getFiles()) {
-//			
-//		}
-//		
-//		return pointer.getFiles();
 	}
-	
+
 	public Directory getdir(String Name) {
 		Directory pointer = null;
 		pointer = this.root;
-		do {
+		
+		for (int i = 0; i < 6; i++) {
+			pointer = getDirectory(i);
 			if (pointer.getDirName() == Name) {
 				return pointer;
 			}
-			pointer = pointer.getLink();
-			
-		}while(pointer != null);
-		
+		}		
 		return null;
-		
-//		for(File file: this.root.getFiles()) {
-//			
-//		}
-//		
-//		return pointer.getFiles();
 	}
 	
 }

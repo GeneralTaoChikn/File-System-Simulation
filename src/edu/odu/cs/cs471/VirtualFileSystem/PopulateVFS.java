@@ -14,20 +14,6 @@ import edu.odu.cs.cs471.Files.File;
  */
 public class PopulateVFS extends VirtualSystem {
 	
-	private DefaultTreeModel Tree;
-	
-	public PopulateVFS () {
-		Tree = new DefaultTreeModel(null);
-	}
-	
-	public DefaultTreeModel getTree() {
-		return Tree;
-	}
-	
-	
-	public void updateTree(VirtualSystem Sys) {
-		Tree = PopTree(Sys);
-	}
 	public static VirtualSystem populate() {
 		VirtualSystem System = new VirtualSystem();
 		
@@ -36,12 +22,23 @@ public class PopulateVFS extends VirtualSystem {
 		System.B.getRoot().setLink(new Directory("B1"));
 		System.C.getRoot().setLink(new Directory("C1"));
 		
-		for (int i = 1; i < 5; i++) {
+		System.A.getRoot().addFile(new File("Crap", ".exe", "Absolute Garbage"));
+		System.B.getRoot().addFile(new File("Bullocks", ".jar", "Absolute Garbage"));
+		System.C.getRoot().addFile(new File("[Object]", "object", "Error"));
+
+		
+		for (int i = 1; i < 6; i++) {
 			System.A.getDirectory(i).setLink(new Directory("A" + (i+1)));
-			System.A.getDirectory(i).addFile(new File(i, "ebay", ".txt", 
+//			System.A.getDirectory(i).addFile(new File(i, "ebay", ".txt", 
+//					"Steps to becoming a small-scale e-commerce manager"));
+			System.A.getDirectory(i).addFile(new File( "ebay", ".txt", 
 					"Steps to becoming a small-scale e-commerce manager"));
 			System.B.getDirectory(i).setLink(new Directory("B" + (i+1)));
+			System.B.getDirectory(i).addFile(new File( "ebay", ".txt", 
+					"Steps to becoming a small-scale e-commerce manager"));
 			System.C.getDirectory(i).setLink(new Directory("C" + (i+1)));
+			System.C.getDirectory(i).addFile(new File( "ebay", ".txt", 
+					"Steps to becoming a small-scale e-commerce manager"));
 		}
 		
 		
@@ -52,7 +49,7 @@ public class PopulateVFS extends VirtualSystem {
 	
 	//TODO Find way to use a tree TOO.
 //	public static JTree PopTree(VirtualSystem Sys) {
-	public DefaultTreeModel PopTree(VirtualSystem Sys) {
+	public static DefaultTreeModel PopTree(VirtualSystem Sys) {
 
 		DefaultTreeModel tree;
 		
@@ -92,10 +89,7 @@ public class PopulateVFS extends VirtualSystem {
 			DriveA.add(A);
 			DriveB.add(B);
 			DriveC.add(C);
-			
-//			DriveA.getLastLeaf().add(new DefaultMutableTreeNode(A));
-//			DriveB.getLastLeaf().add(new DefaultMutableTreeNode(B));
-//			DriveC.getLastLeaf().add(new DefaultMutableTreeNode(C));
+		
 			i++;
 			
 		}while( i != 6 );

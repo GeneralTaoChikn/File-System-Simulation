@@ -73,30 +73,9 @@ public class Main {
 		System = PopulateVFS.populate();
 		DefaultListModel <File> files = new DefaultListModel<File> (); 
 		String [] fileExtensions = { ".exe" ,".txt" , ".docx", ".jar"};
-		PopulateVFS Tree = new PopulateVFS ();
-		DefaultTreeModel t;
-		Tree.updateTree(System);
-		t = Tree.getTree();
 		
 		
-//		JTree tree = new JTree(PopulateVFS.PopTree(System));
-		JTree tree = new JTree(t);
-		tree.addTreeExpansionListener(new TreeExpansionListener() {
-			public void treeCollapsed(TreeExpansionEvent arg0) {
-				files.clear();
-			}
-			public void treeExpanded(TreeExpansionEvent arg0) {
-				files.clear();
-				//get directory name
-				String DirList = arg0.getPath().getLastPathComponent().toString();
-				//return drive
-				String n = (arg0.getPath().getParentPath().getLastPathComponent().toString());
-				List<File> toCopy = System.get(n).getFileList(DirList);
-				for (File file: toCopy) {
-					files.addElement(file);
-				}
-			}
-		});
+		JTree tree = new JTree(PopulateVFS.PopTree(System));
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 			public void valueChanged(TreeSelectionEvent e) {
 				files.clear();
@@ -107,6 +86,18 @@ public class Main {
 				System.setWorkingDirectory(e.getPath().getLastPathComponent().toString());
 				//Set Working Drive--Stores Drive aName
 				System.setWorkingDrive(e.getPath().getParentPath().getLastPathComponent().toString());
+				
+				
+				//Show List
+				files.clear();
+				//get directory name
+				String DirList = e.getPath().getLastPathComponent().toString();
+				//return drive
+				String n = (e.getPath().getParentPath().getLastPathComponent().toString());
+				List<File> toCopy = System.get(n).getFileList(DirList);
+				for (File file: toCopy) {
+					files.addElement(file);
+				}//end File
 
 				
 			}
@@ -115,10 +106,6 @@ public class Main {
 		frame.getContentPane().add(tree);
 		
 		JList <File> FileListViewer = new JList <File>(files);
-		FileListViewer.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-			}
-		});
 		FileListViewer.setBounds(291, 13, 306, 419);
 		frame.getContentPane().add(FileListViewer);
 		
@@ -127,7 +114,7 @@ public class Main {
 		frame.getContentPane().add(EnterFileName);
 		EnterFileName.setColumns(10);
 		
-		JComboBox fileExtension = new JComboBox(fileExtensions);
+		JComboBox <String>fileExtension = new JComboBox<String>(fileExtensions);
 		fileExtension.setBounds(857, 331, 94, 22);
 		frame.getContentPane().add(fileExtension);
 		
@@ -138,16 +125,24 @@ public class Main {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File file = new File (System.get(System.getWorkingDrive()).getdir(System.getWorkingDirectory()).getDepth(),
-						EnterFileName.getText(), (String)fileExtension.getSelectedItem(), FileContents.getText());
+				File file = new File (EnterFileName.getText(), 
+						(String)fileExtension.getSelectedItem(), FileContents.getText());
 				
 				EnterFileName.setText("");
 				FileContents.setText("");
 				
 				System.get(System.getWorkingDrive()).getFileList(System.getWorkingDirectory()).add(file);
 				
-				Tree.updateTree(System);
+				// Add Node
+				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+				DefaultMutableTreeNode selectedNode;	
+				selectedNode = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
 				
+				if (selectedNode != null) {
+					selectedNode.insert(new DefaultMutableTreeNode(file.getFileName()), selectedNode.getIndex(selectedNode.getLastChild()));
+				}
+				model.reload(selectedNode);
+								
 			}
 		});
 		btnSave.setBounds(854, 379, 97, 25);
@@ -156,6 +151,17 @@ public class Main {
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				//Delete Selected Node or File
+				DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+				DefaultMutableTreeNode selectedNode;	
+				selectedNode = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+				
+				String FileToDelete = selectedNode.toString();
+				FileContents.setText(selectedNode.toString());
+				
+				System.get(selectedNode.getParent().getParent().toString()).getdir(selectedNode.getParent().toString()).deleteFile(FileToDelete);
 				
 			}
 		});
@@ -166,22 +172,24 @@ public class Main {
 		btnPrint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//Print Selected File
+				DefaultMutableTreeNode selectedNode;	
+				selectedNode = (DefaultMutableTreeNode)tree.getLastSelectedPathComponent();
+				
+				String FileToPrint = selectedNode.toString();
+				String drive = selectedNode.getParent().getParent().toString();
+				String directory = selectedNode.getParent().toString();
+				
+				List <File> files = System.get(drive).getFileList(directory);
+				for (File ptr: files) {
+					if ((ptr.getFileName()+ ptr.getFileExtension()) == FileToPrint)
+						FileContents.setText(ptr.toString());
+						
+				}
 			}
 		});
 		btnPrint.setBounds(301, 457, 97, 25);
 		frame.getContentPane().add(btnPrint);
-		
-		JButton btnRefreshTree = new JButton("Refresh Tree");
-		btnRefreshTree.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				Tree.updateTree(System);
-				t = Tree.getTree();
-				
-			}
-		});
-		btnRefreshTree.setBounds(132, 457, 131, 25);
-		frame.getContentPane().add(btnRefreshTree);
 				
 	}
 }
